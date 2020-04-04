@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NumberCrusher</string>
+    <string name="number_crusher">Number Crusher</string>
+    <string name="guess_number">Guess number</string>
+    <string name="give_up">Give Up</string>
+    <string name="instruction_text">Guess the number (it has 4 digits and each digit exists only once) RP = Right position, WP = Wrong position, NC = Not contained</string>
+</resources>

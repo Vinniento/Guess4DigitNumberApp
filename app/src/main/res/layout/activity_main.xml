@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_inputnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:hint="@string/guess_number"
+        app:layout_constraintBottom_toTopOf="@+id/text_numberResult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.762" />
+
+    <Button
+        android:id="@+id/button_guessnumber"
+        android:layout_width="100dp"
+        android:layout_height="37dp"
+        android:text="@string/guess_number"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_inputnumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toEndOf="@+id/text_numberResult"
+        app:layout_constraintTop_toTopOf="@+id/text_inputnumber" />
+
+    <Button
+        android:id="@+id/button_defeat"
+        android:layout_width="99dp"
+        android:layout_height="38dp"
+        android:text="@string/give_up"
+        app:layout_constraintBottom_toBottomOf="@+id/text_numberResult"
+        app:layout_constraintEnd_toEndOf="@+id/button_guessnumber"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_guessnumber"
+        app:layout_constraintTop_toTopOf="@+id/text_numberResult" />
+
+    <TextView
+        android:id="@+id/text_numberResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="432dp"
+        android:hint="Secret number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text_inputnumber"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_inputnumber" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="358dp"
+        android:layout_height="48dp"
+        android:text="@string/instruction_text"
+        app:layout_constraintBottom_toTopOf="@+id/text_inputnumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
