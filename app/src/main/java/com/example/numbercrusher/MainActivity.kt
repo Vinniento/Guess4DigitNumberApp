@@ -13,25 +13,30 @@ class MainActivity : AppCompatActivity() {
 
         var userInput: String
         var randomNumber = ""
-        var toast: Toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG)
-        val createUniqueFourDigitNumber = {(0..9).shuffled().take(4)}
+        //toasties so umständlich gemacht damit sie einander canceln können und das aktuelle angezeigt wird
+        var toast: Toast = Toast.makeText(applicationContext, "", Toast.LENGTH_LONG)
+        val createUniqueFourDigitNumber = {(0..9).shuffled().take(4).joinToString("")}
 
-        createUniqueFourDigitNumber().forEach {randomNumber +=it }
-        
+        //createUniqueFourDigitNumber().forEach {randomNumber +=it }
+        randomNumber = createUniqueFourDigitNumber()
        button_guessnumber.setOnClickListener {
            toast.cancel()
-           toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG)
+           toast = Toast.makeText(applicationContext, "", Toast.LENGTH_LONG)
 
            userInput = text_inputnumber.text.toString()
-           val correctPositionsList = compareNumbers(userInput, randomNumber)
-            toast.setText(correctPositionsList.toString())
-            toast.show()
+            if(checkHowManyUniqueChars(userInput) < 4)
+               Toast.makeText(this, "No repeated digits allowed", Toast.LENGTH_LONG).show()
+           else {
+                val correctPositionsList = compareNumbers(userInput, randomNumber)
+                toast.setText(correctPositionsList.toString())
+                toast.show()
+            }
        }
 
         button_defeat.setOnClickListener { 
             text_numberResult.text = randomNumber
             toast.cancel()
-            toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG)
+            toast = Toast.makeText(applicationContext, "", Toast.LENGTH_LONG)
             toast.setText(randomNumber)
             toast.show()
         }
@@ -55,20 +60,21 @@ class MainActivity : AppCompatActivity() {
 
         userInput.forEachIndexed { index, c ->
             positionRightList.add(
-                if(randomNumber[index] == c ) "RP"
-                else if(randomNumber.contains(c.toString())) {
-                    if(randomNumber.reversed().substring(index).contains(c))
-                        "NC"
-                    else
-                        "WP"
+                when {
+                    randomNumber[index] == c -> "RP"
+                    randomNumber.contains(c.toString())  -> "WP" //!randomNumber.reversed().substring(index).contains(c)
+                    else -> "NC"
                 }
-                else "NC"
-                //alte version - funktioniert aber da werden bei doppel vorkommenden Zahlen im Input "WP" angegeben und nicht "NC"
-                /* when {
-                     randomNumber[index] == c -> "RP"
-                     randomNumber.contains(c.toString())  -> "WP" //!randomNumber.reversed().substring(index).contains(c)
-                     else -> "NC"
-                 }*/
+                //alte version - funktioniert aber da werden bei doppel vorkommenden Zahlen im Input "WP" angegeben und nicht "NC" wenns zwei indizes nach rechts weiter ist
+                /* if(randomNumber[index] == c ) "RP"
+                 else if(randomNumber.contains(c.toString())) {
+                     if(randomNumber.reversed().substring(index).contains(c))
+                         "NC"
+                     else
+                         "WP"
+                 }
+                 else "NC"*/
+
             )
         }
 
@@ -76,19 +82,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Returns true if there are repeating Chars in a given String
-     * NOT FINISHED -> Problem: Overwrites itself if previous digit was true, next could make repeatedDigit false again
+     * Returns how many unique chars there are in a string
      */
-    fun checkIfStringContainsRepeatedChar(input: String): Boolean  {
-        var repeatedDigit = false
 
-        input.forEachIndexed {
-                index, c -> repeatedDigit = (input.count {input[index] == c } > 2)
-        }
-        return repeatedDigit
+    fun checkHowManyUniqueChars(input: String): Int{
+       val list = mutableListOf<Char>()
+        input.forEach{if(!list.contains(it)) list.add(it)}
+        return list.size
     }
-
-    /**
+    /**{
      * Creates 4 digit number
      * Deprecated version
      */
