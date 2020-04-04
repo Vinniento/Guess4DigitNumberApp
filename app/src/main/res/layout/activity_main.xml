@@ -6,29 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/text_inputnumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginLeft="52dp"
+        android:layout_marginTop="168dp"
         android:hint="@string/guess_number"
-        app:layout_constraintBottom_toTopOf="@+id/text_numberResult"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.762" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_guessnumber"
         android:layout_width="100dp"
         android:layout_height="37dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
         android:text="@string/guess_number"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_inputnumber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toEndOf="@+id/text_numberResult"
-        app:layout_constraintTop_toTopOf="@+id/text_inputnumber" />
+        app:layout_constraintTop_toTopOf="@+id/text_inputnumber"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button_defeat"
@@ -39,18 +39,8 @@
         app:layout_constraintEnd_toEndOf="@+id/button_guessnumber"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button_guessnumber"
-        app:layout_constraintTop_toTopOf="@+id/text_numberResult" />
-
-    <TextView
-        android:id="@+id/text_numberResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="432dp"
-        android:hint="Secret number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/text_inputnumber"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/text_inputnumber" />
+        app:layout_constraintTop_toTopOf="@+id/text_numberResult"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView4"
@@ -62,4 +52,28 @@
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_numberResult"
+        android:layout_width="87dp"
+        android:layout_height="22dp"
+        android:hint="Number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text_inputnumber"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="@+id/text_inputnumber"
+        app:layout_constraintTop_toBottomOf="@+id/text_inputnumber"
+        app:layout_constraintVertical_bias="0.153" />
+
+    <Button
+        android:id="@+id/button_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="212dp"
+        android:text="Reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

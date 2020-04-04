@@ -13,20 +13,35 @@ class MainActivity : AppCompatActivity() {
 
         var userInput: String
         var randomNumber = ""
-        var givenUp: String? = null
-        
-        val createUniqueFourDigitNumber = (0..9).shuffled().take(4)
-        createUniqueFourDigitNumber.forEach {randomNumber +=it }
+        var toast: Toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG)
+        val createUniqueFourDigitNumber = {(0..9).shuffled().take(4)}
+
+        createUniqueFourDigitNumber().forEach {randomNumber +=it }
         
        button_guessnumber.setOnClickListener {
-          
+           toast.cancel()
+           toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG)
+
            userInput = text_inputnumber.text.toString()
-           var correctPositionsList = compareNumbers(userInput, randomNumber)
-           Toast.makeText(this, correctPositionsList.toString(), Toast.LENGTH_LONG).show()
+           val correctPositionsList = compareNumbers(userInput, randomNumber)
+            toast.setText(correctPositionsList.toString())
+            toast.show()
        }
+
         button_defeat.setOnClickListener { 
-            Toast.makeText(this, randomNumber, Toast.LENGTH_LONG).show()
+            text_numberResult.text = randomNumber
+            toast.cancel()
+            toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG)
+            toast.setText(randomNumber)
+            toast.show()
         }
+        button_reset.setOnClickListener{
+            randomNumber =""
+            createUniqueFourDigitNumber().forEach {randomNumber +=it }
+            text_inputnumber.text.clear()
+            text_numberResult.text = ""
+        }
+
         
 
     }
